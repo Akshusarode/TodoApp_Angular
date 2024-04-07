@@ -1,0 +1,24 @@
+<!-- todo-list.component.html -->
+
+<div class="todo-list-container">
+  <div>
+      <input type="text" [(ngModel)]="newTask" placeholder="Add Task">
+      <button class="addBtn" (click)="addTask(newTask)">Add Task</button>
+  </div>
+ <!-- todo-list.component.html -->
+
+<div class="filter-buttons" *ngIf="showFilterButtons">
+  <button class="fltBtn" [class.active]="isFilterActive('all')" (click)="setFilter('all')">All</button>
+  <button class="fltBtn" [class.active]="isFilterActive('completed')" (click)="setFilter('completed')">Completed</button>
+  <button class="fltBtn" [class.active]="isFilterActive('incomplete')" (click)="setFilter('incomplete')">Incomplete</button>
+</div>
+
+  <ul>
+      <li *ngFor="let item of filteredTodoList$ | async; let i = index">
+          <span>{{ i + 1 }}. </span>
+          <input type="checkbox" [checked]="item.completed" (change)="toggleTaskCompletion(item.id)">
+          <span [ngClass]="{ 'completed': item.completed }">{{ item.task }}</span>
+          <button class="dltBtn" (click)="removeTask(item.id)">Delete</button>
+      </li>
+  </ul>
+</div>

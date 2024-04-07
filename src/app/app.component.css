@@ -1,0 +1,10 @@
+.container{
+height: 100vh;
+padding: 50px;
+background-color: black;
+}
+.heading{
+    color: white;
+    text-align: center;
+    padding-bottom: 15px;
+}
